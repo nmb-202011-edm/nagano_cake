@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   get '/admin' => 'admin/homes#top'
   
   scope module: :public do
+    devise_for :customers, controllers: {
+      sessions: 'public/customers/sessions',
+      registrations: 'public/customers/registrations',
+    }, skip: [:passwords]
+    
     resources :items, only: [:index, :show]
     get '/customers/my_page' => 'customers#show'
     resource :customers, only: [:edit, :update]
@@ -19,6 +24,12 @@ Rails.application.routes.draw do
     resources :addresses, only: [:create, :index, :edit, :update, :destroy]
   end
   
+  scope module: :admin do
+    devise_for :admin, controllers: {
+      sessions: 'admin/admin/sessions',
+    }, skip: [:passwords, :registrations]
+  end
+
   namespace :admin do
     resources :items, :except => :destroy
     resources :genres, only: [:index, :create, :edit, :update]
@@ -27,8 +38,5 @@ Rails.application.routes.draw do
       resources :order_items, only: [:update]
     end
   end
-  
-  devise_for :admin
-  devise_for :customers
   
 end
