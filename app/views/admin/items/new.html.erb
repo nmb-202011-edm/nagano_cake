@@ -1,0 +1,37 @@
+<%= form_with model: @item, url:admin_items_path do |f| %>
+
+  <p>
+    <%= f.attachment_field :image %>
+  </p>
+
+  <p>
+    <%= f.label :name, '商品名' %>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :introduction, '商品説明'%>
+    <%= f.text_area :introduction %>
+  </p>
+
+  <p>
+      <div class="form-group">
+        <%= f.label :genre, 'ジャンル' %>
+        <%= f.select :genre, {'ケーキ': 1, 'プリン': 2, '焼き菓子': 3, 'キャンディ': 4}, { include_blank: '--選択してください--'}, { class: 'form-control' , required: true } %>
+      </div>
+  </p>
+  
+  <p>
+    <%= f.label :price, '税抜き価格' %>
+    <%= f.text_field :price %> 円
+  </p>
+  
+ 
+  
+  <div class="form-group">
+    <%= f.submit '新規投稿', class: 'btn btn-primary btn-block' %>
+  </div>
+
+  
+
+<% end %>

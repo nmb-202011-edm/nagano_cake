@@ -9,7 +9,8 @@ Rails.application.routes.draw do
     devise_for :customers, controllers: {
       sessions: 'public/customers/sessions',
       registrations: 'public/customers/registrations',
-    }, skip: [:passwords]
+      passwords: 'public/customers/passwords'
+    }
     
     resources :items, only: [:index, :show]
     get '/customers/my_page' => 'customers#show'
@@ -27,7 +28,9 @@ Rails.application.routes.draw do
   scope module: :admin do
     devise_for :admin, controllers: {
       sessions: 'admin/admin/sessions',
-    }, skip: [:passwords, :registrations]
+      passwords: 'admin/admin/passwords',
+      registrations: 'admin/admin/registrations'
+    }
   end
 
   namespace :admin do
