@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'public/homes#top'
+  
   get '/about' => 'public/homes#about'
 
   get '/admin' => 'admin/homes#top'
@@ -9,7 +10,9 @@ Rails.application.routes.draw do
     devise_for :customers, controllers: {
       sessions: 'public/customers/sessions',
       registrations: 'public/customers/registrations',
-    }, skip: [:passwords]
+      passwords: 'public/customers/passwords'
+    }
+    
 
     resources :items, only: [:index, :show]
     get '/customers/my_page' => 'customers#show'
