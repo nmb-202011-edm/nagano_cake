@@ -10,9 +10,9 @@
   </head>
 
   <body>
-<<<<<<< HEAD
+
     <%= render 'layouts/header' %>
-=======
+    
 　　<% if customer_signed_in? %>
       <li>
         <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
@@ -25,7 +25,6 @@
         <%= link_to "ログイン", new_customer_session_path %>
       </li>
     <% end %>
->>>>>>> develop
     <%= yield %>
   </body>
 </html>
