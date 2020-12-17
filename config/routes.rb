@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   root 'public/homes#top'
+  
   get '/about' => 'public/homes#about'
   
   get '/admin' => 'admin/homes#top'
