@@ -5,7 +5,8 @@ class Admin::ItemsController < ApplicationController
   end
   
   def create
-    @item = Item.create(item_params)
+    @item = Item.new(item_params)
+    @item.save
     redirect_back(fallback_location: new_admin_item_path)
   end
   
@@ -15,8 +16,8 @@ class Admin::ItemsController < ApplicationController
   
   private
 
-  def post_params
-    params.require(:item).permit(:name, :introduction, :price, :image, genre_ids: [])
+  def item_params
+    params.require(:item).permit(:name, :introduction, :price, :image, :genre_id)
   end
   
 end

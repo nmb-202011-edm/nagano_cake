@@ -16,8 +16,9 @@
 
   <p>
       <div class="form-group">
-        <%= f.label :genre, 'ジャンル' %>
-        <%= f.select :genre, {'ケーキ': 1, 'プリン': 2, '焼き菓子': 3, 'キャンディ': 4}, { include_blank: '--選択してください--'}, { class: 'form-control' , required: true } %>
+        <%= f.label :genre_id, 'ジャンル' %>
+        <%= f.select :genre_id, {'ケーキ': 1, 'プリン': 2, '焼き菓子': 3, 'キャンディ': 4}, { include_blank: '--選択してください--'}, { class: 'form-control' , required: true } %>
+        <!--f.collection_select-->
       </div>
   </p>
   
