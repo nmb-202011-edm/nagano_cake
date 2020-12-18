@@ -1,6 +1,8 @@
 <!--URL:/admin/items/new-->
 
+
 <%= form_with model: @item, url:admin_items_path, local: true do |f| %>
+<h3>商品新規登録</h3
 
   <p>
     <%= f.attachment_field :image %>
@@ -28,8 +30,17 @@
     <%= f.text_field :price %> 円
   </p>
   
+  <p>
+      <div class="form-group">
+        <%= f.label :is_active, '販売ステータス' %>
+        <%= f.collection_select :is_active, [['販売中',true],['売切れ',false]], { include_blank: true, selected: 0 } %>
+      </div>
+  </p>
+  
   <div class="form-group">
     <%= f.submit '新規投稿', class: 'btn btn-primary btn-block' %>
   </div>
+  
+  
 
 <% end %>
