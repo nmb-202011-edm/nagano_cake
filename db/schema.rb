@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_16_081930) do
+ActiveRecord::Schema.define(version: 2020_12_17_045255) do
 
   create_table "addresses", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -44,6 +44,14 @@ ActiveRecord::Schema.define(version: 2020_12_16_081930) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "last_name"
+    t.string "postal_code"
+    t.string "address"
+    t.string "telephone_number"
+    t.string "first_name"
+    t.string "last_name_kana"
+    t.string "_name_kana"
+    t.boolean "is_deleted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
@@ -53,11 +61,19 @@ ActiveRecord::Schema.define(version: 2020_12_16_081930) do
   create_table "genres", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.boolean "is_active", default: true
   end
 
   create_table "items", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "image_id"
+    t.text "introduction"
+    t.integer "price"
+    t.boolean "is_active", default: true
+    t.integer "genre_id"
   end
 
   create_table "order_items", force: :cascade do |t|
