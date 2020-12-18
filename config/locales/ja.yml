@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    attributes:
+    # エラーメッセージの日本語化、モデル名の下にカラム名を改行&インデントする
+      genre:
+        name: ジャンル名
+      item:
+        image: 商品画像
+        name: 商品名
+        introduction: 商品説明
+        genre_id: ジャンル
+        price: 税抜価格
