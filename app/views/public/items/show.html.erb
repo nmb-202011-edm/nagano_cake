@@ -6,3 +6,5 @@
   <!--↓(商品価格+商品価格÷10)という計算、商品価格×1.1とすると、小数点以下が表示された↓-->
   <tr><td>￥<%= @item.price+@item.price / 10 %>(税込)</td></tr>
 </table>
+
+<%= link_to "カートに入れる", item_path, class: 'btn btn-primary' %>
