@@ -7,6 +7,7 @@ ja:
       item:
         image: 商品画像
         name: 商品名
+        genre: ジャンル
         introduction: 商品説明
         genre_id: ジャンル
         price: 税抜価格
