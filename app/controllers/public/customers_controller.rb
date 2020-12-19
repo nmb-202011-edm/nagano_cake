@@ -1,22 +1,24 @@
 class Public::CustomersController < ApplicationController
-  
-  def show
+
+  def my_page
     @customer = current_customer
   end
-  
+
   def edit
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
   end
-  
+
   def update
-    @customer = Customer.find(params[:id])
-    @customer.update(customer_params)
-    redirect_to customer_path(@customer.id)
+    if @customer.update(customer_params)
+      redirect_to customers_my_page_path
+    else
+      render :edit
+    end
   end
 
   private
 
   def customer_params
-    params.require(:customer).permit(:id, :last_name, :first_name, :last_name_kana, :_name_kana, :postal_code, :address, :telephone_number, :is_deleted)
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :_name_kana, :postal_code, :address, :telephone_number, :is_deleted)
   end
 end
