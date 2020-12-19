@@ -20,13 +20,18 @@
             <td class="text-left">
               <%= link_to admin_customer_path(customer), class: "btn-link"  do %>
                 <i class="far fa-user"></i>
-                <%= customer.last_name %>
+                <%= customer.last_name %><%= customer.first_name %>
               <% end %>
             </td>
             <td class="text-left">
               <%= customer.email %>
             </td>
-            <td class="col-md-4">
+            <td class="text-left">
+               <% if customer.is_deleted == true %>
+                <p><i class="fas fa-bullseye blue"></i>退会済</p>
+              <% else %>
+                <p><i class="fas fa-bullseye red"></i>有効</p>
+              <% end %>
 
             </td>
           </tr>
