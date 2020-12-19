@@ -17,7 +17,8 @@ class Public::AddressesController < ApplicationController
     end
 
     def edit
-        binding.pry
+        @address=Address.find(params[:id])
+        # binding.pry
     end
 
     def destroy
@@ -25,6 +26,18 @@ class Public::AddressesController < ApplicationController
         Address.find(params[:id]).destroy
         redirect_to request.referer
     end
+
+    def update
+      # binding.pry
+      address=Address.find(params[:id])
+      if address.update(address_params)
+        redirect_to addresses_path
+      else
+        redirect_to root_path
+      end
+    end
+
+
 
     private
 

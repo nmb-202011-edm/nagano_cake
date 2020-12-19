@@ -6,6 +6,16 @@
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
+  
+  <% if @genre.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <ul>
+        <% @genre.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <!--↓ラジオボタン↓-->
   <div>
     <%= f.radio_button :is_active, :true, :checked => true %>
