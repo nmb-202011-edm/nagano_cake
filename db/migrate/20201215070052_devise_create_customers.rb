@@ -33,7 +33,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[5.2]
       t.string :last_name_kana
       t.string :_name_kana
       t.boolean :is_deleted, default: false
-      
+
       t.timestamps null: false
     end
     add_index :customers, :email,                unique: true
