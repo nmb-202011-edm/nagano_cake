@@ -8,3 +8,8 @@
 </table>
 
 <%= link_to "カートに入れる", item_path, class: 'btn btn-primary' %>
+
+    <h3>ジャンル検索</h3>
+    <% @genres.each do |genre| %>
+       <%= link_to genre.name, items_path(genre_id: genre.id) %>
+    <% end %>

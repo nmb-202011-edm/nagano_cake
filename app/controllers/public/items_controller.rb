@@ -11,6 +11,7 @@ class Public::ItemsController < ApplicationController
   end
   
   def show
+    @genres = Genre.where(is_active: true)
     @item = Item.find(params[:id])
   end
   
