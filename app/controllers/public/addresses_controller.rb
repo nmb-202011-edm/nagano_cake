@@ -28,10 +28,10 @@ class Public::AddressesController < ApplicationController
     end
 
     def update
-      binding.pry
+      # binding.pry
       address=Address.find(params[:id])
       if address.update(address_params)
-        redirect_to request.referer
+        redirect_to addresses_path
       else
         redirect_to root_path
       end
