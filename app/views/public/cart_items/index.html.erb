@@ -22,7 +22,7 @@
   			  <tr id="cart-<%= cart_item.id %>">
 
             <td class="text-left">
-              <%= attachment_image_tag( cart_item.product, :image, size: "55x43", fallback: "no_image.jpg") %>
+              <%= attachment_image_tag( cart_item.product, :image, size: "40x40", fallback: "no_image.jpg") %>
               <%= cart_item.item.name %>
             </td>
             <td class="text-right">
