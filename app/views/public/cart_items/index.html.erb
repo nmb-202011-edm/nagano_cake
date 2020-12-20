@@ -1,0 +1,27 @@
+<h2 class="text-center">ショッピングカート</h2>
+<div calss="row">
+  <div class="col-lg-11">
+
+    <% if @cart_items.present? %>
+    <div>
+      <%= link_to " カートを空にする", cart_items_path, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: "glyphicon glyphicon-trash btn btn-danger" %>
+    </div>
+    <table class="table table-hover table-bordered">
+      <thead>
+        <tr class="info">
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th></th>
+        </tr>
+      </thead>
+
+    <% else %>
+      <!-- カートアイテムがない場合 -->
+      <p>お客様のショッピングカートに商品はありません。</p>
+      <p><%= link_to "商品一覧", items_path, class: "btn-link" %>から商品をお探し下さい。</p>
+
+    <% end %>
+  </div>
+</div>
