@@ -7,24 +7,27 @@ Rails.application.routes.draw do
   get '/admin' => 'admin/homes#top'
 
   scope module: :public do
-    devise_for :customers, controllers: {
-      sessions: 'public/customers/sessions',
-      registrations: 'public/customers/registrations',
-      passwords: 'public/customers/passwords'
-    }
 
     resources :items, only: [:index, :show]
     get '/customers/my_page' => 'customers#my_page'
-    get '/customers' => 'customers#update'
+    patch '/customers' => 'customers#update'
     get '/customers/my_page/edit' => 'customers#edit'
     get '/customers/unsubscribe' => 'customers#unsubscribe'
-    get '/customers/withdraw' => 'customers#withdraw'
+    #get=>patchに変更
+    patch '/customers/withdraw' => 'customers#withdraw'
     resources :cart_items, only: [:index, :update, :destroy, :create]
     get '/cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :orders, only: [:new, :create, :index, :show]
     get '/orders/confirm' => 'orders#comfirm'
     get '/orders/complete' => 'orders#complete'
     resources :addresses, only: [:create, :index, :edit, :update, :destroy]
+
+    devise_for :customers, controllers: {
+      sessions: 'public/customers/sessions',
+      registrations: 'public/customers/registrations',
+      passwords: 'public/customers/passwords'
+    }
+
   end
 
   scope module: :admin do
