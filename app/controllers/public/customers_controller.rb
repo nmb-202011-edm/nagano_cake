@@ -16,6 +16,15 @@ class Public::CustomersController < ApplicationController
       render :edit
     end
   end
+  
+  def unsubscribe
+  end
+
+  def withdraw
+    @customer = current_customer
+    @customer.update(is_active: false)
+    redirect_to roo_path
+  end
 
   private
 
