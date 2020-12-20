@@ -13,7 +13,8 @@ Rails.application.routes.draw do
     patch '/customers' => 'customers#update'
     get '/customers/my_page/edit' => 'customers#edit'
     get '/customers/unsubscribe' => 'customers#unsubscribe'
-    get '/customers/withdraw' => 'customers#withdraw'
+    #get=>patchに変更
+    patch '/customers/withdraw' => 'customers#withdraw'
     resources :cart_items, only: [:index, :update, :destroy, :create]
     get '/cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :orders, only: [:new, :create, :index, :show]
