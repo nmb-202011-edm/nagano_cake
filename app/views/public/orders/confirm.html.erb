@@ -1,1 +1,22 @@
-ここは注文情報確認画面です。
+<h3>注文情報確認</h3>
+
+<!--注文商品-->
+
+<table>
+  <%= form_with model: @order, url:orders_path, local: true do |f| %>
+  <thead>
+    <tr>
+      <th>支払方法</th>
+      <th>お届け先</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><%= @order.payment_method %></td>
+    <td>〒<%= @order.postal_code %> <%= @order.address %>
+    <br><%= @order.name %></td>
+    <td><%= f.submit '購入を確定する', class: 'btn btn-primary' %></td>
+  </tr>
+  </tbody>
+  <% end %>
+</table>
