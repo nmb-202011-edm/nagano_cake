@@ -12,7 +12,9 @@
   <body>
     <%= render 'layouts/header' , customer: @customer %>
 
+
 <% if false%>
+
 　　<% if customer_signed_in? %>
       <li>
         <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
