@@ -1,10 +1,9 @@
-<h2 class="text-center">ショッピングカート</h2>
+<h4 class="text-center bg-secondary text-light">ショッピングカート</h4>
 <div calss="row">
   <div class="col-lg-11">
-
-    <% if @cart_items.present? %>
-    <div>
-      <%= link_to " カートを空にする", cart_items_path, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: "glyphicon glyphicon-trash btn btn-danger" %>
+  <% if current_customer.cart_items.present? %>
+    <div class="text-right mb-3">
+      <%= link_to " カートを空にする", cart_items_destroy_all_path, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: "glyphicon glyphicon-trash btn btn-danger" %>
     </div>
     <table class="table table-hover table-bordered">
       <thead>
@@ -16,11 +15,59 @@
           <th></th>
         </tr>
       </thead>
+      <tbody>
+        <% @cart_items.each do |cart_item| %>
+  			  <tr id="cart-<%= cart_item.id %>">
 
+            <td class="text-left">
+              <%= attachment_image_tag( cart_item.item, :image, size: "40x40", fallback: "no_image.jpg") %>
+              <%= cart_item.item.name %>
+            </td>
+            <td class="text-left">
+              <%= cart_item.item.price.to_s(:delimited) %>
+            </td>
+            <td>
+              <%= form_for(cart_item, url: cart_item_path(cart_item), method: :patch )do |f| %>
+                <%= f.number_field :amount, class: "amount", size: 2, min: 1, id: "amount_cart" %>
+                <%= f.submit "変更", class: "btn btn-info" %>
+              <% end %>
+            </td>
+            <td class="text-light" id='sub_price-<%= cart_item.id %>'>
+              <!--¥%= sub_price(cart_item).to_s(:delimited) %>-->
+            </td>
+            <td>
+              <%= link_to " 削除する", cart_item_path(cart_item), method: :delete, data: {confirm: "#{cart_item.item.name}を削除してよろしいですか？"}, class: "glyphicon glyphicon-trash btn btn-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="col-lg-3">
+      <div class ="action">
+        <%= link_to " 買い物を続ける", items_path, class: "btn btn-info" %>
+      </div>
+    </div>
+
+    <div class="col-lg-3 text-right">
+      <table class="table table-bordered text-right">
+        <thead>
+          <tr>
+            <td class="warning">合計金額</td>
+            <td class="text-right">
+              <!--¥ %= total_price(@cart_items).to_s(:delimited) %>-->
+            </td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="col-lg-3 btn btn-success text-light">
+      <%= link_to " 情報入力に進む " %>
+    </div>
     <% else %>
-      <!-- カートアイテムがない場合 -->
-      <p>お客様のショッピングカートに商品はありません。</p>
-      <p><%= link_to "商品一覧", items_path, class: "btn-link" %>から商品をお探し下さい。</p>
+      <!-- カートが空の場合 -->
+      <p>カートに商品はありません。</p>
+      <p><%= link_to "商品一覧", items_path, class: "btn-link" %></p>
 
     <% end %>
   </div>

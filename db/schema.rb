@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2020_12_19_114700) do
+ActiveRecord::Schema.define(version: 2020_12_20_045136) do
 
 
   create_table "addresses", force: :cascade do |t|
@@ -55,7 +54,7 @@ ActiveRecord::Schema.define(version: 2020_12_19_114700) do
     t.string "telephone_number"
     t.string "first_name"
     t.string "last_name_kana"
-    t.string "_name_kana"
+    t.string "first_name_kana"
     t.boolean "is_deleted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

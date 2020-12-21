@@ -1,7 +1,7 @@
 class Public::ItemsController < ApplicationController
   def index
     @genres = Genre.where(is_active: true)
-    
+
     if params[:genre_id].blank?
   		@items = Item.where(is_active: true)
     else
@@ -9,16 +9,17 @@ class Public::ItemsController < ApplicationController
   		@items = @genre.items.where(is_active: true)
     end
   end
-  
+
   def show
     @genres = Genre.where(is_active: true)
     @item = Item.find(params[:id])
+    @cart_item = CartItem.new
   end
-  
+
   private
 
   def item_params
     params.require(:item).permit(:name, :introduction, :price, :image, :genre_id, :is_active)
   end
-  
+
 end
