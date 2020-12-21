@@ -16,6 +16,9 @@
         </tr>
       </thead>
       <tbody>
+        <% @total_price = 0 %>
+        <% tax = 1.1 %>
+
         <% @cart_items.each do |cart_item| %>
   			  <tr id="cart-<%= cart_item.id %>">
 
@@ -23,8 +26,8 @@
               <%= attachment_image_tag( cart_item.item, :image, size: "40x40", fallback: "no_image.jpg") %>
               <%= cart_item.item.name %>
             </td>
-            <td class="text-left">
-              <%= cart_item.item.price.to_s(:delimited) %>
+            <td class="text-right">
+              <%= tax_price = (cart_item.item.price * tax).round(0).to_s(:delimited)  %>
             </td>
             <td>
               <%= form_for(cart_item, url: cart_item_path(cart_item), method: :patch )do |f| %>
@@ -32,10 +35,14 @@
                 <%= f.submit "変更", class: "btn btn-info" %>
               <% end %>
             </td>
-            <td class="text-light" id='sub_price-<%= cart_item.id %>'>
-              <!--¥%= sub_price(cart_item).to_s(:delimited) %>-->
+            <td class="text-right">
+                <% @sub_total = cart_item.item.price* tax * cart_item.amount %>
+                ¥ <%= @sub_total.round(0).to_s(:delimited) %>
+
+                <% @total_price += @sub_total %>
+
             </td>
-            <td>
+            <td class = "text-center">
               <%= link_to " 削除する", cart_item_path(cart_item), method: :delete, data: {confirm: "#{cart_item.item.name}を削除してよろしいですか？"}, class: "glyphicon glyphicon-trash btn btn-danger" %>
             </td>
           </tr>
@@ -55,7 +62,7 @@
           <tr>
             <td class="warning">合計金額</td>
             <td class="text-right">
-              <!--¥ %= total_price(@cart_items).to_s(:delimited) %>-->
+              ¥ <%= @total_price.round(0).to_s(:delimited) %>
             </td>
           </tr>
         </thead>
