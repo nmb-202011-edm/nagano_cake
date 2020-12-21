@@ -18,9 +18,7 @@ class ApplicationController < ActionController::Base
       root_path
     end
 
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:id, :last_name, :first_name, :last_name_kana, :_name_kana, :email,:postal_code, :address, :telephone_number, :is_deleted])
-    end
+
 
   private
 
@@ -38,5 +36,8 @@ class ApplicationController < ActionController::Base
     @cart_item = CartItem.find(params[:id])
   end
 
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:id, :last_name, :first_name, :last_name_kana, :_name_kana, :email,:postal_code, :address, :telephone_number, :is_deleted])
+    end
 
 end
