@@ -1,13 +1,15 @@
 class Public::AddressesController < ApplicationController
 
     def index
-        @addresses=Address.all
+        # @addresses=Address.all
         @address=Address.new
+        @addresses=Address.where(customer_id: current_customer.id)
     end
 
     def create
 
          address=Address.new(address_params)
+         address.customer_id=current_customer.id
         #   binding.pry
         if address.save
          redirect_to request.referer
