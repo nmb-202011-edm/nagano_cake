@@ -1,3 +1,24 @@
 // Place all the styles related to the public::homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#img-box{
+  position: relative;
+  margin:60px auto 0px;
+}
+
+#img-box-mini{
+  position: absolute;
+  top: 40px;
+  left: 0px;
+  width:100%;
+  color: #fff;
+ }
+
+#img-box-text{
+	opacity: 0.9;
+  font-size: xxx-large;
+  font-weight: bold;
+  color:#a8ffd3;
+  text-align: center;
+  width: 100%;
+}
