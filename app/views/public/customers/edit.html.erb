@@ -1,8 +1,6 @@
+<%= form_with model: @customer, url: customers_path, local: true do |f| %>
 <h2>登録情報編集</h2>
 
-<%= form_with model: @customer, url: customers_path, local: true do |f| %>
-
-　<!--氏名（_name_kana注意）-->
 　<div class="field">
     <%= f.label :名前 %>
     <%= f.label :（姓） %>
@@ -13,7 +11,7 @@
     <%= f.label :（セイ） %>
     <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
     <%= f.label :（メイ） %>
-    <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "_name_kana" %>
+    <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
   </div>
   
   <div class="field">
