@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2020_12_20_045136) do
 
-
   create_table "addresses", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -83,6 +82,11 @@ ActiveRecord::Schema.define(version: 2020_12_20_045136) do
   create_table "order_items", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "item_id"
+    t.integer "order_id"
+    t.integer "price"
+    t.integer "amount"
+    t.integer "production_status", default: 0
   end
 
   create_table "orders", force: :cascade do |t|
@@ -94,8 +98,8 @@ ActiveRecord::Schema.define(version: 2020_12_20_045136) do
     t.string "name"
     t.integer "shipping_cost"
     t.integer "total_payment"
-    t.integer "payment_method"
-    t.integer "status"
+    t.integer "payment_method", default: 0
+    t.integer "status", default: 0
   end
 
   create_table "users", force: :cascade do |t|
