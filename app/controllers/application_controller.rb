@@ -19,4 +19,27 @@ class ApplicationController < ActionController::Base
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:id, :last_name, :first_name, :last_name_kana, :first_name_kana, :email,:postal_code, :address, :telephone_number, :is_deleted])
     end
+
+  private
+
+  # before_action作成
+
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+
+  def set_customer
+    @customer = Customer.find(params[:id])
+  end
+
+
+  def set_cart_item
+    @cart_item = CartItem.find(params[:id])
+  end
+
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:id, :last_name, :first_name, :last_name_kana, :_name_kana, :email,:postal_code, :address, :telephone_number, :is_deleted])
+    end
+
 end
