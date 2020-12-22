@@ -1,14 +1,16 @@
-<h1>toppage</h1>
+<div class="container">
 
-		<div class="col-xs-12">
-		  <!--<img src="sweets_shortcake.png">-->
-		  <%= image_tag '/assets/top.jpg' %>
-		  <p>
-<%#= image_tag 'assets/images/sweets_shortcake' %>
-</p>
+	<div class="row">
+		<!--<div class="col-xs-6 ">-->
 
-		    <p>
-		      長野にある小さなケーキ屋さんです。
-		    </p>
-
+	<div id="img-box">
+	    <%= image_tag '/assets/top.jpg' , class: "mx-auto d-block" %>
+	    <div id="img-box-mini"><p  id="img-box-text">Welcome to "Ngano Cakes"</p></div>
 	</div>
+
+
+
+		  <%#= image_tag '/assets/top.jpg' , class: "mx-auto d-block" %>
+
+    </div>
+</div>
