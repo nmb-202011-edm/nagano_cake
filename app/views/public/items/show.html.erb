@@ -7,7 +7,14 @@
   <tr><td>￥<%= @item.price+@item.price / 10 %>(税込)</td></tr>
 </table>
 
-<%= link_to "カートに入れる", item_path, class: 'btn btn-primary' %>
+    <%= form_for(@cart_item, url: cart_items_path, method: :post) do |f| %>
+    <% if customer_signed_in? %>
+      <%= f.hidden_field :customer_id, value: current_customer.id %>
+    <% end %>
+      <%= f.hidden_field :item_id, value: @item.id %>
+      <%= f.select :amount, options_for_select((1..10).to_a), include_blank: "個数選択" %>
+      <%= f.submit "カートに入れる", class: "btn btn-primary" %>
+    <% end %>
 
     <h3>ジャンル検索</h3>
     <% @genres.each do |genre| %>
