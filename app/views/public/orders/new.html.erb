@@ -17,7 +17,7 @@
     <br>
     <%= f.radio_button :address_choice, "addresses" %>
     <%= f.label :address_choice, "登録済み住所から選択", :value => "addresses" %>
-    <%= f.collection_select :id , @addresses, :id, :address , :include_blank => "選択してください" %>
+    <%= f.collection_select :address_id , @addresses, :id, :address , :include_blank => "選択してください" %>
     <br>
     <%= f.radio_button :address_choice, "new_address" %>
     <%= f.label :address_choice, "新しいお届け先", :value => "new_address" %>

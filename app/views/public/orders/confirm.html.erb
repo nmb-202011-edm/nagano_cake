@@ -1,9 +1,9 @@
 <h3>注文情報確認</h3>
 
 <!--注文商品-->
-
 <table>
-  <%= form_with model: @order, url:orders_path, local: true do |f| %>
+
+  <%= form_with model: @new_order, url:orders_path, local: true do |f| %>
   <thead>
     <tr>
       <th>支払方法</th>
@@ -11,12 +11,51 @@
     </tr>
   </thead>
   <tbody>
-  <tr>
+    <tr>
     <td><%= @order.payment_method %></td>
     <td>〒<%= @order.postal_code %> <%= @order.address %>
     <br><%= @order.name %></td>
+    <td><%= f.hidden_field :payment_method, :value => @order.payment_method %></td>
+    <td><%= f.hidden_field :postal_code, :value => @order.postal_code %></td>
+    <td><%= f.hidden_field :address, :value => @order.address %></td>
+    <td><%= f.hidden_field :name, :value => @order.name %></td>
     <td><%= f.submit '購入を確定する', class: 'btn btn-primary' %></td>
   </tr>
+
+  <% @total_price = 0 %>
+<% tax = 1.1 %>
+<% @cart_items.each do |cart_item| %>
+  <tr id="cart-<%= cart_item.id %>">
+
+    <td class="text-left">
+      <%= attachment_image_tag( cart_item.item, :image, size: "40x40", fallback: "no_image.jpg") %>
+      <%= cart_item.item.name %>
+    </td>
+    <td class="text-right">
+      <%= tax_price = (cart_item.item.price * tax).round(0).to_s(:delimited)  %>
+    </td>
+    <td>
+      <%= cart_item.amount %>個
+    </td>
+    <td class="text-right">
+        <% @sub_total = cart_item.item.price* tax * cart_item.amount %>
+        ¥ <%= @sub_total.round(0).to_s(:delimited) %>
+
+        <% @total_price += @sub_total %>
+    </td>
+  </tr>
+<% end %>
   </tbody>
   <% end %>
 </table>
+
+      <table>
+        <thead>
+          <tr>
+            <td class="warning">合計金額</td>
+            <td class="text-right">
+              ¥ <%= @total_price.round(0).to_s(:delimited) %>
+            </td>
+          </tr>
+        </thead>
+      </table>
