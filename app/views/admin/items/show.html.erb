@@ -1,13 +1,23 @@
 <!--URL:/admin/items/:id/edit-->
+  <div class="row">
 
-<table>
-  <!--↓画像サイズの指定を:fillにすると表示されなかったので、size:型にしてます↓-->
-  <tr><th><%= attachment_image_tag @item, :image, format: 'jpeg', size: "200x200" %></th><td></td></tr>
-  <tr><th>商品名</th><td><%= @item.name %></td></tr>
-  <tr><th>商品説明</th><td><%= @item.introduction %></td></tr>
-  <tr><th>ジャンル</th><td><%= @item.genre.name %></td></tr>
-  <!--↓(商品価格+商品価格÷10)という計算、商品価格×1.1とすると、小数点以下が表示された↓-->
-  <tr><th>税込価格(税抜価格)</th><td><%= @item.price %> (<%= @item.price+@item.price / 10 %>)</td></tr>
-  <tr><th>販売ステータス</th><td><%= (@item.is_active) ? '販売中' : '販売停止中' %></td></tr>
-</table>
-<p><%= link_to "編集", edit_admin_item_path(@item) %></p>
+        <div class="float-left">
+            <%= attachment_image_tag @item, :image, format: 'jpeg', size: "200x200" %>
+        </div>
+
+
+
+        <div class="float-left ml-5 mt-5">
+            <table class="table table-bordered w-75">
+              <!--↓画像サイズの指定を:fillにすると表示されなかったので、size:型にしてます↓-->
+              <tr><th class="thead-dark">商品名</th><td><%= @item.name %></td></tr>
+              <tr><th class="thead-dark">商品説明</th><td class="overflow-auto"><%= @item.introduction %></td></tr>
+              <tr><th class="thead-dark">ジャンル</th><td><%= @item.genre.name %></td></tr>
+              <!--↓(商品価格+商品価格÷10)という計算、商品価格×1.1とすると、小数点以下が表示された↓-->
+              <tr><th>税込価格(税抜価格)</th><td><%= @item.price %> (<%= @item.price+@item.price / 10 %>)</td></tr>
+              <tr><th>販売ステータス</th><td><%= (@item.is_active) ? '販売中' : '販売停止中' %></td></tr>
+            </table>
+            <p class="float-left btn btn-outline-success "><%= link_to "EDIT", edit_admin_item_path(@item)%></p>
+        </div>
+
+  </div>

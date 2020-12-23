@@ -39,6 +39,7 @@
     </td>
     <td class="text-right">
         ¥ <%= (cart_item.item.price* 1.1 * cart_item.amount).round(0).to_s(:delimited) %>
+
     </td>
   </tr>
 <% end %>
@@ -49,13 +50,10 @@
       <table>
         <thead>
           <tr>
-            <td class="warning">合計金額</td>
-            <td class="text-right">
-              ¥ <%= (@total_price.round(0) + 800).to_s(:delimited) %>
-            </td>
             <th>送料</th>
             <th>商品合計</th>
             <th>合計金額</th>
+
           </tr>
         </thead>
         <tbody>
