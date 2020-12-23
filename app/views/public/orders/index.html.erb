@@ -31,7 +31,8 @@
       		          <% end %>
       		        </td>
       		        <td class="text-right">
-      		          <%= @total_price.round(0).to_s(:delimited) %>円
+      		          <% total_payment = 1.1 * order.order_items.sum(:price) %>
+      		          <%= total_payment.round(0).to_s(:delimited) %>円
       		        </td>
       		        <td>
       		          <%= order.status %>
