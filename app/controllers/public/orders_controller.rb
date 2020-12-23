@@ -59,7 +59,7 @@ class Public::OrdersController < ApplicationController
 
   def index
     @tax = 1.1
-    @total_price = 0
+
     @orders = current_customer.orders
   end
 
