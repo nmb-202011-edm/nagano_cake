@@ -1,16 +1,15 @@
-
- <div>
-  <span>
+   <span>
    <i class="fas fa-address-card fa-3x"></i>
    <h2>マイページ</h2>
-  </span>
-   <fieldset class="form-group">
+   </span>
+
+
     <div class="form-group">
-     <label>名前</label>
-     <%= @customer.last_name %>
+　　 <label>名前</label>
+　　 <%= @customer.last_name %>
      <%= @customer.first_name %>
-    </div>
-　　<div class="form-group">
+     </div>
+     <div class="form-group">
 　　 <label>カナ</label>
 　　 <%= @customer.last_name_kana %>
      <%= @customer.first_name_kana %>
@@ -31,8 +30,6 @@
 　　 <label>メールアドレス</label>
 　　 <%= @customer.email %>
 　　</div>
-　 </div>
-</div>
 <% if @customer.id == current_customer.id %>
     <p><%= link_to "編集する", customers_my_page_edit_path, class: "btn btn-outline-warning"%></p>
    <% end %>
