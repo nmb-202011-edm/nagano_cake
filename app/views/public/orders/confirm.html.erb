@@ -54,7 +54,7 @@
           <tr>
             <td class="warning">合計金額</td>
             <td class="text-right">
-              ¥ <%= @total_price.round(0).to_s(:delimited) %>
+              ¥ <%= (@total_price.round(0) + 800).to_s(:delimited) %>
             </td>
           </tr>
         </thead>
