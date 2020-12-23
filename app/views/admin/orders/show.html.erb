@@ -35,22 +35,19 @@
     <th>制作ステータス</th>
   </thead>
     <tbody>
-      <% @total_price = 0 %>
       <% @order_items.each do |order_item| %>
       <%= form_with model: order_item, url:admin_order_order_item_path(@order,order_item), method: :patch do |f| %>
       <tr>
         <td><%= order_item.item.name %></td>
         <td><%= (order_item.item.price*1.1).round(0).to_s(:delimited) %></td>
         <td><%= order_item.amount %></td>
-        <td><% @sub_total = order_item.item.price* 1.1 * order_item.amount %>
-            <%= @sub_total.round(0).to_s(:delimited) %></td>
+        <td><%= (order_item.item.price * 1.1 * order_item.amount).round(0).to_s(:delimited) %></td>
         <td>
           <%= f.label :production_status, '制作ステータス' %>
           <%= f.select :production_status, [['着手不可',"cannot"],['制作待ち',"wait"],['製作中',"production"],['制作完了',"complete"]] %>
           <%= f.submit '更新', class: 'btn btn-success' %>
         </td>
       </tr>
-      <% @total_price += @sub_total %>
       <% end %>
       <% end %>
     </tbody>
@@ -65,8 +62,8 @@
     </tr>
   </thead>
   <tbody>
-    <td>¥ <%= @total_price.round(0).to_s(:delimited) %></td>
-    <td>¥ 800</td>
-    <td>¥ <%= (@total_price+800).round(0).to_s(:delimited) %></td>
+    <td>¥ <%= (@order.total_payment - @order.shipping_cost).round(0).to_s(:delimited) %></td>
+    <td>¥ <%= @order.shipping_cost %></td>
+    <td>¥ <%= (@order.total_payment).round(0).to_s(:delimited) %></td>
   </tbody>
 </table>

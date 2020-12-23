@@ -1,44 +1,50 @@
 <%= form_with model: @customer, url: customers_path, local: true do |f| %>
-<h2>登録情報編集</h2>
 
-　<div class="field">
-    <%= f.label :名前 %>
-    <%= f.label :（姓） %>
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
-    <%= f.label :（名） %>
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
-    <%= f.label :フリガナ %>
-    <%= f.label :（セイ） %>
-    <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
-    <%= f.label :（メイ） %>
-    <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :メールアドレス %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-  <%= f.label :郵便番号（ハイフン無し） %>
-  <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
-  </div>
-
-  <div class="field">
-  <%= f.label :住所 %>
-  <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
-  </div>
-
-  <div class="field">
-  <%= f.label :電話番号 %>
-  <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number" %>
-  </div>
-
-
-  <div class="actions">
-    <%= f.submit "編集内容を保存する" %>
-    <%= link_to '退会する', customers_unsubscribe_path %>
-  </div>
+<div>
+ <div>
+  <span>
+   <i class="far fa-edit fa-3x"></i>
+   <h2>登録情報編集</h2><br>
+  </span>
+  <form>
+   <fieldset class="form-group">
+　  <div class="form-group">
+     <label>名前</label><br>
+     <label>(姓)</label>
+     <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class:"form-control"%>
+     <label>(名)</label>
+     <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class:"form-control" %>
+    </div>
+    <div class="form-group">
+     <label>フリガナ</label><br>
+     <label>(セイ)</label>
+     <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana", class:"form-control" %>
+     <label>(メイ)</label>
+     <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", class:"form-control" %>
+    </div>
+    <div class="form-group">
+     <label>メールアドレス</label>
+     <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+    </div>
+    <div class="form-group">
+     <label>郵便番号（ハイフン無し）</label>
+     <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class:"form-control" %>
+    </div>
+    <div class="form-group">
+     <label>住所</label>
+     <%= f.text_field :address, autofocus: true, autocomplete: "address", class:"form-control" %>
+    </div>
+    <div class="form-group">
+     <label>電話番号</label>
+     <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number", class:"form-control" %>
+    </div>
+    <div class="actions">
+     <%= f.submit "編集内容を保存する", class:'btn btn-outline-info' %>
+     <%= link_to '退会する', customers_unsubscribe_path, class:'btn btn-danger' %>
+    </div>
+  </form>
+ </div>
+</div>
 
 <% end %>
 

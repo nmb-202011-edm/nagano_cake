@@ -12,6 +12,12 @@ class Public::OrdersController < ApplicationController
     # binding.pry
     @customer = current_customer
     @cart_items = @customer.cart_items
+    @sum = 0
+      @cart_items.each do |cart_item|
+        @tax_price = (cart_item.item.price * 1.1 * cart_item.amount)
+        @sum += @tax_price
+      end
+    @sum += 800
     @order.payment_method = params[:order][:payment_method]
     # address_choiceボタンが"〇〇"に選ばれたときというif文
     if params[:order][:address_choice] == "my_address"
@@ -34,6 +40,7 @@ class Public::OrdersController < ApplicationController
     # @order = params[:order]
     @new_order = Order.new(order_params)
     @new_order.customer_id = current_customer.id
+    @new_order.shipping_cost = 800
     # binding.pry
     @customer = current_customer
     @cart_items = @customer.cart_items
@@ -58,25 +65,14 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @tax = 1.1
-    @total_price = 0
-    @orders = current_customer.orders
   end
 
   def show
-    @tax = 1.1
-    @total_price = 0
-    @order = Order.find(params[:id])
-    @order_items = @order.order_items
-      @order_items.each do |order_items|
-        @sub_total = @tax * order_items.price * order_items.amount
-        @total_price += @sub_total
-      end
   end
 
   private
 
     def order_params
-      params.require(:order).permit(:postal_code, :name, :address, :payment_method, :address_choice, :address_id)
+      params.require(:order).permit(:postal_code, :name, :address, :payment_method, :address_choice, :address_id, :total_payment)
     end
 end
