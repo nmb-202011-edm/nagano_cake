@@ -40,8 +40,8 @@
     <td class="text-right">
         <% @sub_total = cart_item.item.price* tax * cart_item.amount %>
         ¥ <%= @sub_total.round(0).to_s(:delimited) %>
-
-        <% @total_price += @sub_total + 800 %>
+        
+        <% @total_price += @sub_total %>
     </td>
   </tr>
 <% end %>
