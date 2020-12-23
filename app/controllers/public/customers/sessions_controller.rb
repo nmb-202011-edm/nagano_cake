@@ -25,11 +25,10 @@ class Public::Customers::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
-  
+
   def reject_inactive_customer
     @customer  = Customer.find_by(email: params[:customer][:email].downcase)
-      if @customer.is_deleted == true
-        flash[:error] = "退会済みです。"
+      if @customer && @customer.is_deleted
         redirect_to root_path
       else
         flash[:error] = ""
