@@ -1,0 +1,72 @@
+
+<table>
+  <%= form_with model: @order, url:admin_order_path(@order), method: :patch do |f| %>
+  <h3>注文履歴詳細</h3>
+  <thead>
+    <th>購入者</th>
+    <th>配送先</th>
+    <th>支払方法</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= link_to admin_customer_path(@order.customer_id) do %>
+        <%= @order.customer.last_name %> <%= @order.customer.first_name %>
+      <% end %></td>
+      <td>〒<%= @order.postal_code %> <%= @order.address %>
+      <br><%= @order.name %></td>
+      <td><%= @order.payment_method %></td>
+      <td>
+        <%= f.label :status, '注文ステータス' %>
+        <%= f.select :status, [['入金待ち',"waiting"],['入金確認',"deposited"],['製作中',"making"],['発送準備中',"ready"],['発送済み',"sent"]] %>
+        <%= f.submit '更新', class: 'btn btn-success' %>
+      </td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+
+<table>
+
+  <thead>
+    <th>商品名</th>
+    <th>単価(税込)</th>
+    <th>数量</th>
+    <th>小径</th>
+    <th>制作ステータス</th>
+  </thead>
+    <tbody>
+      <% @total_price = 0 %>
+      <% @order_items.each do |order_item| %>
+      <%= form_with model: order_item, url:admin_order_order_item_path(@order,order_item), method: :patch do |f| %>
+      <tr>
+        <td><%= order_item.item.name %></td>
+        <td><%= (order_item.item.price*1.1).round(0).to_s(:delimited) %></td>
+        <td><%= order_item.amount %></td>
+        <td><% @sub_total = order_item.item.price* 1.1 * order_item.amount %>
+            <%= @sub_total.round(0).to_s(:delimited) %></td>
+        <td>
+          <%= f.label :production_status, '制作ステータス' %>
+          <%= f.select :production_status, [['着手不可',"cannot"],['制作待ち',"wait"],['製作中',"production"],['制作完了',"complete"]] %>
+          <%= f.submit '更新', class: 'btn btn-success' %>
+        </td>
+      </tr>
+      <% @total_price += @sub_total %>
+      <% end %>
+      <% end %>
+    </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>合計金額</th>
+      <th>送料</th>
+      <th>請求金額合計</th>
+    </tr>
+  </thead>
+  <tbody>
+    <td>¥ <%= @total_price.round(0).to_s(:delimited) %></td>
+    <td>¥ 800</td>
+    <td>¥ <%= (@total_price+800).round(0).to_s(:delimited) %></td>
+  </tbody>
+</table>
