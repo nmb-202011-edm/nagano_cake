@@ -1,26 +1,41 @@
-<h1>マイページ</h1>
 
-
+ <div>
+  <span>
+   <i class="fas fa-address-card fa-3x"></i>
+   <h2>マイページ</h2>
+  </span>
+   <fieldset class="form-group">
+    <div class="form-group">
+     <label>名前</label>
+     <%= @customer.last_name %>
+     <%= @customer.first_name %>
+    </div>
+　　<div class="form-group">
+　　 <label>カナ</label>
+　　 <%= @customer.last_name_kana %>
+     <%= @customer.first_name_kana %>
+    </div>
+    <div class="form-group">
+　　 <label>郵便番号</label>
+     <%= @customer.postal_code %>
+    </div>
+    <div class="form-group">
+　　 <label>住所</label>
+     <%= @customer.address %>
+    </div>
+    <div class="form-group">
+　　 <label>電話番号</label>
+　　 <%= @customer.telephone_number %>
+　　</div>
+    <div class="form-group">
+　　 <label>メールアドレス</label>
+　　 <%= @customer.email %>
+　　</div>
+　 </div>
+</div>
 <% if @customer.id == current_customer.id %>
-    <p><%= link_to "編集する", customers_my_page_edit_path %></p>
-<% end %>
-
-<h3>氏名</h3>
-<%= @customer.last_name %>
-<%= @customer.first_name %>
-<h3>カナ</h3>
-<%= @customer.last_name_kana %>
-<%= @customer.first_name_kana %>
-<h3>郵便番号</h3>
-<%= @customer.postal_code %>
-<h3>住所</h3>
-<%= @customer.address %>
-<h3>電話番号</h3>
-<%= @customer.telephone_number %>
-<h3>メールアドレス</h3>
-<%= @customer.email %>
-
-
+    <p><%= link_to "編集する", customers_my_page_edit_path, class: "btn btn-outline-warning"%></p>
+   <% end %>
 
 <h3>配送先</h3>
 
