@@ -9,7 +9,7 @@ class Order < ApplicationRecord
     bank: 0, #銀行振込
     card: 1, #クレジットカード
   }
-  
+
   enum status:{
     waiting: 0, #入金待ち
     deposited: 1, #入金確認
