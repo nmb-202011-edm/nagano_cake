@@ -19,11 +19,10 @@
     <td><%= f.hidden_field :postal_code, :value => @order.postal_code %></td>
     <td><%= f.hidden_field :address, :value => @order.address %></td>
     <td><%= f.hidden_field :name, :value => @order.name %></td>
+    <td><%= f.hidden_field :total_payment, :value => @sum %></td>
     <td><%= f.submit '購入を確定する', class: 'btn btn-primary' %></td>
   </tr>
 
-  <% @total_price = 0 %>
-<% tax = 1.1 %>
 <% @cart_items.each do |cart_item| %>
   <tr id="cart-<%= cart_item.id %>">
 
@@ -32,16 +31,14 @@
       <%= cart_item.item.name %>
     </td>
     <td class="text-right">
-      <%= tax_price = (cart_item.item.price * tax).round(0).to_s(:delimited)  %>
+      <%= (cart_item.item.price * 1.1).round(0).to_s(:delimited)  %>
     </td>
+
     <td>
       <%= cart_item.amount %>個
     </td>
     <td class="text-right">
-        <% @sub_total = cart_item.item.price* tax * cart_item.amount %>
-        ¥ <%= @sub_total.round(0).to_s(:delimited) %>
-        
-        <% @total_price += @sub_total %>
+        ¥ <%= (cart_item.item.price* 1.1 * cart_item.amount).round(0).to_s(:delimited) %>
     </td>
   </tr>
 <% end %>
@@ -52,14 +49,14 @@
       <table>
         <thead>
           <tr>
-            <td class="warning">合計金額</td>
-            <td class="text-right">
-              ¥ <%= (@total_price.round(0) + 800).to_s(:delimited) %>
-<<<<<<< HEAD
-              <!--送料+800円-->
-=======
->>>>>>> develop
-            </td>
+            <th>送料</th>
+            <th>商品合計</th>
+            <th>合計金額</th>
           </tr>
         </thead>
+        <tbody>
+          <td>¥ 800</td>
+          <td>¥ <%= (@sum - 800).round(0).to_s(:delimited) %></td>
+          <td>¥ <%= @sum.round(0).to_s(:delimited) %></td>
+        </tbody>
       </table>
