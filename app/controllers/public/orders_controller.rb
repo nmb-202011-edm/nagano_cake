@@ -65,9 +65,19 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @tax = 1.1
+    @orders = current_customer.orders
   end
 
   def show
+    @tax = 1.1
+    @total_price = 0
+    @order = Order.find(params[:id])
+    @order_items = @order.order_items
+      @order_items.each do |order_items|
+        @sub_total = @tax * order_items.price * order_items.amount
+        @total_price += @sub_total
+      end
   end
 
   private

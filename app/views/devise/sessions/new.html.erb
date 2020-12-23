@@ -1,8 +1,9 @@
 <%= form_with model: @customer, url: customer_session_path, local: true do |f| %>
 
-  <i class="fas fa-sign-in-alt fa-3x"></i><h2>ログイン</h2><br><br>
+  <i class="fas fa-sign-in-alt fa-3x"></i><br><h2>ログイン</h2><br><br>
 
-  <form>
+
+  
    <fieldset class="form-group">
     <div class="form-group">
      <label>メールアドレス</label>
@@ -14,10 +15,12 @@
     </div>
     <div>
     <%= f.submit "ログイン", class:'btn btn-outline-info' %>
-    </div>
-   </div><br><br>
-  </form>
+    </div><br><br>
+    <h2>登録がお済みでない方</h2>
+     <%= render "devise/shared/links" %>
+   </div>
+
+  
 <% end %>
 
-<h2>登録がお済みでない方</h2>
-<%= render "devise/shared/links" %>
+
