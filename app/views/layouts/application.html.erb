@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  
+
   <head>
     <title>NaganoCake</title>
     <%= csrf_meta_tags %>
@@ -11,11 +11,11 @@
 
   <body>
     <%= render 'layouts/header' , customer: @customer %>
-    
+
 　 <div class = "container">
-  　  <div class = "row">
+
         <%= yield %>
-      </div>
+
    </div>
 
   </body>
@@ -23,5 +23,5 @@
   <footer>
     <%= render 'layouts/footer' %>
   </footer>
-  
+
 </html>
