@@ -2,7 +2,43 @@
     <%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細
   </h2>
   <div class="row">
-    <div class="col-md-8">
+
+      <!--あああああああああああああああああああああ-->
+
+            <table class="table table-bordered w-75">
+
+              <tr><th class="thead-dark">顧客ID</th><td>
+
+              　<%= @customer.id %>
+          <% if @customer.is_deleted == true %>
+            <span>　<i class="fas fa-bullseye blue"></i>退会済
+          <% elsif @customer.is_deleted == false %>
+            　<i class="fas fa-bullseye red"></i>有効会員</span>
+          <% end %>
+
+              </td></tr>
+              <tr><th class="thead-dark">氏名</th><td class="overflow-auto"><%= @customer.last_name %><%= @customer.first_name %></td></tr>
+              <tr><th class="thead-dark">フリガナ</th><td><%= @customer.last_name_kana + "" + @customer.first_name_kana %></td></tr>
+              <tr><th class="thead-dark">郵便番号</th><td><%= @customer.postal_code %></td></tr>
+              <tr><th class="thead-dark">住所</th><td><%= @customer.address %></td></tr>
+              <tr><th class="thead-dark">電話番号</th><td><%= @customer.telephone_number %></td></tr>
+              <tr><th class="thead-dark">メールアドレス</th><td><%= @customer.email%></td></tr>
+              <tr><th class="thead-dark"></th><td><%= link_to "編集する",edit_admin_customer_path(@customer), class: "glyphicon glyphicon-pencil btn btn-success edit_shipping_addres_#{@customer.id}" %></td></tr>
+            </table>
+
+
+
+
+
+
+
+
+
+
+      <!--あああああああああああああああああああああ-->
+
+      <% if false %>
+
       <div class="field">
         <p>
           顧客ID　　　　　<%= @customer.id %>
@@ -48,5 +84,9 @@
         <%= link_to "編集する",edit_admin_customer_path(@customer), class: "glyphicon glyphicon-pencil btn btn-success edit_shipping_addres_#{@customer.id}" %>
         <!--%= link_to " 注文履歴一覧を見る", %>-->
       </div>
+
+      <% end %>
+
+
     </div>
   </div>
