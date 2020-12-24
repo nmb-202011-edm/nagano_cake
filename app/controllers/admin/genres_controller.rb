@@ -10,7 +10,7 @@ class Admin::GenresController < ApplicationController
   end
 
   def index
-    binding.pry
+    # binding.pry
     @genres = Genre.all
     @genre = Genre.new
   end
