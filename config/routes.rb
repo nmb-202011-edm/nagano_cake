@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'search/search'
   root 'public/homes#top'
+  get '/search' => 'search#search'
 
   get '/about' => 'public/homes#about'
 
