@@ -1,12 +1,6 @@
-<div class="row">
-  <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-top: 25px;">
-    <% if user_signed_in? %>
-      <%= form_with url:search_path, method: :get, local: true do |f| %>
-        <%= f.text_field 'search[value]' %>
-        <%= f.select 'search[model]', options_for_select({ "User" => "user", "Book" => "book" }) %>
-        <%= f.select 'search[how]', options_for_select({ "完全一致" => "match", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partical"  }) %>
-        <%= f.submit :"検索" %>
-      <% end %>
-    <% end %>
+<% if admin_signed_in? %>
+  <div class="bg-dark pb-4 ml-auto text-right">
+    <%= text_field_tag :search, params[:search], placeholder: "Search", class: "text-center, size: 30" %>
+    <span class="input-group-btn"><%= button_tag "検索", :name => nil, class: "mr-5 btn btn-primary" %></span>
   </div>
-</div>
+<% end %>

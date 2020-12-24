@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     patch '/customers' => 'customers#update'
     get '/customers/my_page/edit' => 'customers#edit'
     get '/customers/unsubscribe' => 'customers#unsubscribe'
+    #get '/customers' => 'customers/registrations#new'
     #get=>patchに変更
     patch '/customers/withdraw' => 'customers#withdraw'
     resources :cart_items, only: [:index, :update, :destroy, :create]
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
       registrations: 'public/customers/registrations',
       passwords: 'public/customers/passwords'
     }
-
+    
   end
 
   scope module: :admin do

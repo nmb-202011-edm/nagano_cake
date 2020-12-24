@@ -1,6 +1,6 @@
-<h2 class="head-line title_h2 text-center bg-gray">会員一覧</h2>
+<h2 class="text-center bg-gray">会員一覧</h2>
 <div class="row">
-  <div class="col-md-10 col-md-offset-1">
+  <div class="col-10 col-offset-1">
     <table class="table table-hover table-bordered table-condensed">
       <thead>
         <tr class="info bd-secondary">
@@ -10,7 +10,6 @@
           <th>ステータス</th>
         </tr>
       </thead>
-
       <tbody>
         <% @customers.each do |customer| %>
           <tr>
@@ -19,7 +18,6 @@
             </td>
             <td class="text-left">
               <%= link_to admin_customer_path(customer), class: "btn-link"  do %>
-                <i class="far fa-user"></i>
                 <%= customer.last_name %><%= customer.first_name %>
               <% end %>
             </td>
@@ -28,19 +26,14 @@
             </td>
             <td class="text-left">
                <% if customer.is_deleted == true %>
-                <p><i class="fas fa-bullseye blue"></i>退会済</p>
+                <p>退会済</p>
               <% else %>
-                <p><i class="fas fa-bullseye red"></i>有効</p>
+                <p>有効</p>
               <% end %>
-
             </td>
           </tr>
         <% end %>
       </tbody>
-
-
-
     </table>
   </div>
-
 </div>

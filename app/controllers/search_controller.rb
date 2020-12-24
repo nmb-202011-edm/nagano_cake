@@ -8,38 +8,6 @@ class SearchController < ApplicationController
   end
 
   private
-  def match(model, value)
-    if model == 'user'
-      User.where(name: value)
-    elsif model == 'book'
-      Book.where(title: value)
-    end
-  end
-
-  def forward(model, value)
-    if model == 'User'
-      User.where("name LIKE ?", "#{value}%")
-    elsif model == 'book'
-      Book.where("title LIKE ?", "#{value}%")
-    end
-  end
-
-  def backward(model, value)
-    if model == 'user'
-      User.where("name LIKE ?", "%#{value}")
-    elsif model == 'book'
-      Book.where("title LIKE ?", "%#{value}")
-    end
-  end
-
-  def partical(model, value)
-    if model == 'user'
-      User.where("name LIKE ?", "%#{value}%")
-    elsif model == 'book'
-      Book.where("title LIKE ?", "%#{value}%")
-    end
-  end
-
   def search_for(how, model, value)
     case how
     when 'match'
