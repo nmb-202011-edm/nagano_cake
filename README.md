@@ -38,26 +38,16 @@ InstagramのDMやメールで通販の注文を受けていたが、情報管理
   - jquery-rails
   - refile
  
-# インストール
-
-  
-
-  $ git clone git@github.com:JetBlackVageStore/Naganocake.git
-  $ cd Naganocake
-  $ rails db:seed
-  $ rails db:migrate
-  
-
- 
 #ログイン方法
 
-最初のadmin側ログインは 
-メールアドレス：test@test  
+## 管理者画面
+「rails db:seed」を行った後、
+メールアドレス：admin@test.com
 パスワード：testtest  
-を入力してログインしてください。
-※事前に【rails db:seed】でデータを入れてから行ってください
+でログインしてください。
 
-customer側の会員登録は新規登録から行ってください。
+## 顧客画面
+新規登録から行ってください。
  
 # チーム紹介
 ## EDM
