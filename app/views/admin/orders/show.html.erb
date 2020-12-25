@@ -15,7 +15,7 @@
       <% end %></td>
       <td>〒<%= @order.postal_code %> <%= @order.address %>
       <br><%= @order.name %></td>
-      <td><%= @order.payment_method %></td>
+      <td><%= @order.payment_method_i18n %></td>
       <td>
         <%= f.label :status, '注文ステータス' %>
         <%= f.select :status, [['入金待ち',"waiting"],['入金確認',"deposited"],['製作中',"making"],['発送準備中',"ready"],['発送済み',"sent"]] %>
