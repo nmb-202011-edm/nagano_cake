@@ -1,0 +1,51 @@
+<div class="row">
+
+
+ <div class="col-md-8">
+<i class="fas fa-address-card fa-3x"></i>
+   <h2>マイページ</h2>
+
+  <table class="table">
+   <tbody>
+    <tr>
+      <th scope="row"><label>名前</label></th>
+      <td><%= @customer.last_name %>
+      <%= @customer.first_name %></td>
+    </tr>
+    <tr>
+      <th scope="row"><label>カナ</label></th>
+      <td><%= @customer.last_name_kana %>
+      <%= @customer.first_name_kana %></td>
+    </tr>
+    <tr>
+      <th scope="row"><label>郵便番号</label></th>
+      <td><%= @customer.postal_code %></td>
+    </tr>
+    <tr>
+      <th scope="row"><label>住所</label></th>
+      <td><%= @customer.address %></td>
+    </tr>
+    <tr>
+      <th scope="row"><label>電話番号</label></th>
+      <td><%= @customer.telephone_number %></td>
+    </tr>
+    <tr>
+      <th scope="row"><label>メールアドレス</label></th>
+      <td><%= @customer.email %></td>
+    </tr>
+  </tbody>
+ </table>
+ <% if @customer.id == current_customer.id %>
+
+    <p><%= link_to "編集する", customers_my_page_edit_path, class: "btn btn-outline-warning"%></p>
+
+   <% end %>
+
+<h3>配送先</h3>
+<%= link_to "一覧を見る", addresses_path, class: "btn btn-info" %>
+<h3>注文履歴</h3>
+<%= link_to "一覧を見る", orders_path, class: "btn btn-info" %>
+
+</div>
+
+</div>

@@ -1,0 +1,7 @@
+
+<h1 class="text-center"><i class="fas fa-skull-crossbones "></i>本当に退会しますか？</h1>
+<h2 class="text-center">退会すると、会員登録情報やこれまでの購入履歴が閲覧できなくなります。<br>退会する場合は、「退会する」をクリックしてください。</h2>
+
+ <%= link_to '退会しない', customers_my_page_path, class:'btn btn-primary btn-lg btn-block' %><br>
+ <%= link_to "退会する", customers_withdraw_path, method: :patch, class:'btn btn-danger btn-lg btn-block'%>
+
