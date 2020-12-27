@@ -38,7 +38,7 @@ InstagramのDMやメールで通販の注文を受けていたが、情報管理
   - jquery-rails
   - refile
  
-#ログイン方法
+# ログイン方法
 
 ## 管理者画面
 「rails db:seed」を行った後、
