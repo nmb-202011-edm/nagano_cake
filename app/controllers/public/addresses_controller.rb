@@ -14,7 +14,7 @@ class Public::AddressesController < ApplicationController
         if address.save
          redirect_to request.referer
         else
-         redirect_to root_path
+         redirect_to request.referer
         end
     end
 
